@@ -9,7 +9,7 @@ users = {
 @app.route('/')
 def index():
     return render_template('index.html')
-
+#Test pour lq seconde fois 
 @app.route('/login', methods=['GET'])
 def login():
     username = request.args.get('username')
