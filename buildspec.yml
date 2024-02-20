@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+    commands:
+      - pip install -r requirements.txt -t build/
+  build:
+    commands:
+      - cd build/
+      - zip -r ../app.zip .
+      - cd ..
+  post_build:
+    commands:
+      - aws lambda update-function-code --function-name myFlaskApp --zip-file fileb://app.zip
+
+artifacts:
+  files:
+    - app.zip
